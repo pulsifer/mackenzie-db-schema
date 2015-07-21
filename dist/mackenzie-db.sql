@@ -3,6 +3,7 @@ CREATE SCHEMA mackenzie_sonde;
 CREATE SCHEMA mackenzie_dgt;
 CREATE SCHEMA mackenzie_grab;
 CREATE SCHEMA mackenzie_pmd;
+CREATE SCHEMA lookups;
 
 -- CREATE TABLE IF NOT EXISTS datathemes.metadata (
 --     theme_name text,
@@ -18,7 +19,7 @@ CREATE SCHEMA mackenzie_pmd;
 --         theme_name,
 --         is_published) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_sonde.data (
+CREATE TABLE IF NOT EXISTS mackenzie_sonde.sonde_data (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -41,7 +42,7 @@ CREATE TABLE IF NOT EXISTS mackenzie_sonde.data (
         site,
         is_committed) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_sonde.metadata (
+CREATE TABLE IF NOT EXISTS mackenzie_sonde.sonde_metadata (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS mackenzie_sonde.metadata (
         matrix,
         is_committed ) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_pmd.data (
+CREATE TABLE IF NOT EXISTS mackenzie_pmd.pmd_data (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -132,7 +133,7 @@ CREATE TABLE IF NOT EXISTS mackenzie_pmd.data (
         date_out,
         is_committed) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_pmd.metadata (
+CREATE TABLE IF NOT EXISTS mackenzie_pmd.pmd_metadata (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -151,7 +152,7 @@ CREATE TABLE IF NOT EXISTS mackenzie_pmd.metadata (
         upload_id,
         theme_name ) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_grab.data (
+CREATE TABLE IF NOT EXISTS mackenzie_grab.grab_data (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -252,7 +253,7 @@ CREATE TABLE IF NOT EXISTS mackenzie_grab.data (
         date_in,
         is_committed) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_grab.metadata (
+CREATE TABLE IF NOT EXISTS mackenzie_grab.grab_metadata (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -270,4 +271,18 @@ CREATE TABLE IF NOT EXISTS mackenzie_grab.metadata (
     CONSTRAINT grab_meta_pkey PRIMARY KEY (
         upload_id,
         theme_name ) );
+
+CREATE TABLE IF NOT EXISTS lookups.themes (
+    theme_id varchar NOT NULL,
+    description text,
+    user_id int4,
+    name varchar
+);
+
+BEGIN;
+INSERT INTO lookups.themes VALUES ('sonde', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', null, 'Sonde Data Theme');
+INSERT INTO lookups.themes VALUES ('dgt', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit purus at lobortis finibus. Ut eget dolor in tortor ultrices elementum sit amet eu nunc. Morbi ut nisi diam. Vivamus.', null, 'DGT Data Theme');
+INSERT INTO lookups.themes VALUES ('pmd', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', null, 'PMD Data Theme');
+INSERT INTO lookups.themes VALUES ('grab', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', null, 'Grab Data Theme');
+COMMIT;
 
