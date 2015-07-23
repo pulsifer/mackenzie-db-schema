@@ -1,11 +1,18 @@
 # Mackenzie - Mackenzie Database Schema
 
+This repository contains the database schema and related database logic to stores and manage Mackenzie schemas. The database is currently used by the Mackenzie Basin DMS application. The schema was build on PostgreSQL and has not been tested against other database system. To referesh datathemes and generate table create statements run them out of directory where all themes are stored.
 
+## Referesh Datathemes
+````bash
+$ for i in `ls -d datatheme-mackenzie-*`; do rm -fr $i/www/* && cd $i && IFS='-' read -a parts <<< "$i" && bash publi.sh put dev.mackenzie.${parts[2]} && cd ..; done
+````
 
-This repository contains the database schema and related database logic to stores and manage Mackenzie schemas. The database is currently used by the Mackenzie Basin DMS application. The schema was build on PostgreSQL and has not been tested against other database system.
+## Generate Tables
+````bash
+$ for i in `ls -d datatheme-mackenzie-*`; do cd $i && IFS='-' read -a parts <<< "$i" && cat ./schemas/${parts[2]}_data.json | awk -v action=table -f www/awk/${parts[2]}_data.awk && cat ./schemas/${parts[2]}_meta.json | awk -v action=table -f www/awk/${parts[2]}_meta.awk && cd ..; done
+````
 
 ## Usage
-
 ````bash
 $ createdb mackenzie_dev
 $ psql mackenzie_dev -f ./dist/mackenzie_dev.sql

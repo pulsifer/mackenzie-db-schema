@@ -1,8 +1,8 @@
 -- CREATE SCHEMA datathemes_mackenzie;
-CREATE SCHEMA mackenzie_sonde;
-CREATE SCHEMA mackenzie_dgt;
-CREATE SCHEMA mackenzie_grab;
-CREATE SCHEMA mackenzie_pmd;
+CREATE SCHEMA sonde;
+CREATE SCHEMA dgt;
+CREATE SCHEMA grab;
+CREATE SCHEMA pmd;
 CREATE SCHEMA lookups;
 
 -- CREATE TABLE IF NOT EXISTS datathemes.metadata (
@@ -19,7 +19,7 @@ CREATE SCHEMA lookups;
 --         theme_name,
 --         is_published) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_sonde.sonde_data (
+CREATE TABLE IF NOT EXISTS sonde.sonde_data (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS mackenzie_sonde.sonde_data (
         site,
         is_committed) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_sonde.sonde_metadata (
+CREATE TABLE IF NOT EXISTS sonde.sonde_metadata (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS mackenzie_sonde.sonde_metadata (
         matrix,
         is_committed ) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_pmd.pmd_data (
+CREATE TABLE IF NOT EXISTS pmd.pmd_data (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS mackenzie_pmd.pmd_data (
         date_out,
         is_committed) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_pmd.pmd_metadata (
+CREATE TABLE IF NOT EXISTS pmd.pmd_metadata (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS mackenzie_pmd.pmd_metadata (
         upload_id,
         theme_name ) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_grab.grab_data (
+CREATE TABLE IF NOT EXISTS grab.grab_data (
     upload_id text,
     source_row_index int,
     theme_name text,
@@ -253,7 +253,7 @@ CREATE TABLE IF NOT EXISTS mackenzie_grab.grab_data (
         date_in,
         is_committed) );
 
-CREATE TABLE IF NOT EXISTS mackenzie_grab.grab_metadata (
+CREATE TABLE IF NOT EXISTS grab.grab_metadata (
     upload_id text,
     source_row_index int,
     theme_name text,
