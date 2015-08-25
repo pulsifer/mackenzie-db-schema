@@ -2,6 +2,21 @@
 
 This repository contains the database schema and related database logic to stores and manage Mackenzie schemas. The database is currently used by the Mackenzie Basin DMS application. The schema was build on PostgreSQL and has not been tested against other database system. To referesh datathemes and generate table create statements run them out of directory where all themes are stored.
 
+## Cleanup
+drop table sonde.sonde_meta;
+drop table sonde.sonde_data;
+drop schema sonde;
+drop table dgt.dgt_data;
+drop table dgt.dgt_meta;
+drop schema dgt;
+drop table pmd.pmd_data;
+drop table pmd.pmd_meta;
+drop schema pmd;
+drop table grab.grab_data;
+drop table grab.grab_meta;
+drop schema grab;
+
+
 ## Referesh Datathemes
 ````bash
 $ for i in `ls -d datatheme-mackenzie-*`; do rm -fr $i/www/* && cd $i && IFS='-' read -a parts <<< "$i" && bash publi.sh put dev.mackenzie.${parts[2]} && cd ..; done
