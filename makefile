@@ -8,13 +8,10 @@ OUT=mackenzie-db.sql
 
 default: build
 
-themes.sql:
-	find $(SRC)/themes -name '*.sql' | xargs cat > $(DIST)/$@
+build:
+	find $(SRC)/themes -name '*.sql' | xargs cat > $(DIST)/$@.sql
 
 clean:
 	rm ./dist/*
-
-build: $(ALL)
-	cd $(DIST) && cat $(ALL) > $(OUT)
 
 default: build
